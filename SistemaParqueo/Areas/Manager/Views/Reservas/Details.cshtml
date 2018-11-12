@@ -1,0 +1,83 @@
+﻿@model SistemaParqueo.Models.Reserva
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservaEstado.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReservaEstado.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servicio.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servicio.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehiculo.Placa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehiculo.Placa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaReservaLlegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaReservaLlegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaReservaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaReservaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaSistemaLLegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaSistemaLLegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaSistemaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaSistemaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

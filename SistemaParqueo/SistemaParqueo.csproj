@@ -202,7 +202,9 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\CocherasController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ReservasController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Models\CrearClienteViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -555,6 +557,12 @@
     <Content Include="Areas\Admin\Views\Cocheras\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Cocheras\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Reservas\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Reservas\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Reservas\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Reservas\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Reservas\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Reservas\CrearCliente.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
@@ -607,7 +615,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Manager\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

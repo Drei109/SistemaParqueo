@@ -115,7 +115,6 @@ C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\Microsoft.AI.Web.xml
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.csprojAssemblyReference.cache
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.csproj.CoreCompileInputs.cache
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.csproj.CopyComplete
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.dll
