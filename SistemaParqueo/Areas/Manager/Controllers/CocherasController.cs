@@ -85,11 +85,14 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CocheraId,Nombre,Direccion,Descripcion,Longitud,Latitud,Foto,EmpresaId,CocheraEstadoId,CodigoPostal")] Cochera cochera)
+        public ActionResult Edit(Cochera cochera, HttpPostedFileBase fotoFile)
         {
+            ModelState.Remove("Foto");
             if (ModelState.IsValid)
             {
+                
                 db.Entry(cochera).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

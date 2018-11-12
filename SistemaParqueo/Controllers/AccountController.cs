@@ -66,8 +66,12 @@ namespace SistemaParqueo.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginRegisterViewModel model, string returnUrl)
         {
+            ModelState.Remove("PasswordRegister");
+            ModelState.Remove("ConfirmPasswordRegister");
+            ModelState.Remove("EmailRegister");
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -75,10 +79,21 @@ namespace SistemaParqueo.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.EmailLogin, model.PasswordLogin, model.RememberMe, shouldLockout: false);
+            var user = await UserManager.FindAsync(model.EmailLogin, model.PasswordLogin);
+
             switch (result)
             {
                 case SignInStatus.Success:
+                    if ((UserManager.IsInRole(user.Id, RoleName.Admin)))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    else if ((UserManager.IsInRole(user.Id, RoleName.Manager)))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Manager" });
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -86,7 +101,7 @@ namespace SistemaParqueo.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
                     return View(model);
             }
         }
@@ -147,23 +162,31 @@ namespace SistemaParqueo.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(LoginRegisterViewModel model)
         {
+            ModelState.Remove("PasswordLogin");
+            ModelState.Remove("RememberMe");
+            ModelState.Remove("EmailLogin");
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.EmailRegister, Email = model.EmailRegister };
+                var result = await UserManager.CreateAsync(user, model.PasswordRegister);
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    await UserManager.AddToRoleAsync(currentUser.Id, RoleName.Manager);
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new { area = "Manager" });
                 }
                 AddErrors(result);
             }

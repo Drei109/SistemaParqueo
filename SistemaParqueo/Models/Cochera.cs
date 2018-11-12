@@ -27,6 +27,7 @@ namespace SistemaParqueo.Models
         public string Direccion { get; set; }
 
         [StringLength(250)]
+        [Required]
         public string Descripcion { get; set; }
 
         [StringLength(250)]
@@ -37,6 +38,12 @@ namespace SistemaParqueo.Models
 
         [StringLength(250)]
         public string Foto { get; set; }
+
+        [StringLength(30)]
+        public string Telefono { get; set; }
+
+        [StringLength(250)]
+        public string HorarioAtencion { get; set; }
 
         public int? EmpresaId { get; set; }
 

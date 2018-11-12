@@ -125,3 +125,6 @@ C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.ForeignKeyIdentity.resources
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.IdentityEmpresaRelation.resources
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.addedZipCodeToCochera.resources
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.descripcionCochereRequired.resources
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.addedTelefonoHorarioenCochera.resources
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.EmpresaIdNullified.resources

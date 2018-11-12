@@ -197,6 +197,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CocherasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\CocherasController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
@@ -222,6 +225,18 @@
     <Compile Include="Migrations\201810292227064_addedZipCodeToCochera.Designer.cs">
       <DependentUpon>201810292227064_addedZipCodeToCochera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810312144295_descripcionCochereRequired.cs" />
+    <Compile Include="Migrations\201810312144295_descripcionCochereRequired.Designer.cs">
+      <DependentUpon>201810312144295_descripcionCochereRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810312334537_added Telefono Horario en Cochera.cs" />
+    <Compile Include="Migrations\201810312334537_added Telefono Horario en Cochera.Designer.cs">
+      <DependentUpon>201810312334537_added Telefono Horario en Cochera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811121509522_EmpresaIdNullified.cs" />
+    <Compile Include="Migrations\201811121509522_EmpresaIdNullified.Designer.cs">
+      <DependentUpon>201811121509522_EmpresaIdNullified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -239,6 +254,7 @@
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\ReservaEstado.cs" />
     <Compile Include="Models\ReservaServicios.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Servicio.cs" />
     <Compile Include="Models\TipoVehiculo.cs" />
     <Compile Include="Models\Vehiculo.cs" />
@@ -249,6 +265,7 @@
     <Content Include="assets\app\custom_admin.js" />
     <Content Include="assets\app\js\dashboard.js" />
     <Content Include="assets\app\js\layout-builder.js" />
+    <Content Include="assets\app\media\img\bg\bg-8.jpg" />
     <Content Include="assets\app\media\img\bg\bg-1.jpg" />
     <Content Include="assets\app\media\img\bg\bg-2.jpg" />
     <Content Include="assets\app\media\img\bg\bg-3.jpg" />
@@ -528,7 +545,20 @@
     <Content Include="Areas\Manager\Views\Cocheras\Details.cshtml" />
     <Content Include="Areas\Manager\Views\Cocheras\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Cocheras\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Cocheras\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Cocheras\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Cocheras\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Cocheras\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Cocheras\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\export-data.js" />
+    <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -576,6 +606,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Manager\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -603,6 +634,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810292227064_addedZipCodeToCochera.resx">
       <DependentUpon>201810292227064_addedZipCodeToCochera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810312144295_descripcionCochereRequired.resx">
+      <DependentUpon>201810312144295_descripcionCochereRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810312334537_added Telefono Horario en Cochera.resx">
+      <DependentUpon>201810312334537_added Telefono Horario en Cochera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811121509522_EmpresaIdNullified.resx">
+      <DependentUpon>201811121509522_EmpresaIdNullified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
