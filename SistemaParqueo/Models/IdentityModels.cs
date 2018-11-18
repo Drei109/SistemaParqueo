@@ -26,6 +26,7 @@ namespace SistemaParqueo.Models
         public ApplicationDbContext()
             : base("name=ParqueoContext", throwIfV1Schema: false)
         {
+            
         }
 
         public static ApplicationDbContext Create()
