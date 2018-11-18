@@ -17,10 +17,12 @@ namespace SistemaParqueo.APIControllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cocheras
-        public IQueryable<Cochera> GetCochera()
+        public List<Cochera> GetCochera()
         {
             db.Configuration.LazyLoadingEnabled = false;
-            return db.Cochera;
+            List<Cochera> cocheras = db.Cochera.Include(m => m.Servicio).ToList();
+            
+            return cocheras;
         }
 
         // GET: api/Cocheras/5
@@ -28,6 +30,7 @@ namespace SistemaParqueo.APIControllers
         public IHttpActionResult GetCochera(int id)
         {
             Cochera cochera = db.Cochera.Find(id);
+
             if (cochera == null)
             {
                 return NotFound();
