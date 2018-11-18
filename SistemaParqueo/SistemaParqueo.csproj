@@ -200,10 +200,15 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CocherasController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PersonasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminViewModels.cs" />
     <Compile Include="Areas\Manager\Controllers\CocherasController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\ReservasController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ServiciosController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Manager\Models\ConstantsModel.cs" />
     <Compile Include="Areas\Manager\Models\CrearClienteViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -563,6 +568,21 @@
     <Content Include="Areas\Manager\Views\Reservas\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Reservas\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Reservas\CrearCliente.cshtml" />
+    <Content Include="Areas\Admin\Views\Usuarios\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Usuarios\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Usuarios\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Usuarios\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Usuarios\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Servicios\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\Servicios\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\Servicios\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\Servicios\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Servicios\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Personas\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Personas\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Personas\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Personas\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Personas\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
@@ -614,7 +634,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,76 +1,266 @@
-﻿@model IEnumerable<SistemaParqueo.Models.Reserva>
+﻿@using SistemaParqueo.Areas.Manager.Models
+@model IEnumerable<SistemaParqueo.Models.Reserva>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+
+    var reservas = Model.ToList();
+
+    string Estado(int? estadoReserva)
+    {
+        var estado = "";
+        if (estadoReserva == EstadoReserva.Enviado)
+        {
+            estado = "success";
+        }
+        else if (estadoReserva == EstadoReserva.Cancelado)
+        {
+            estado = "danger";
+        }
+        else if (estadoReserva == EstadoReserva.Terminado)
+        {
+            estado = "warning";
+        }
+        else if (estadoReserva == null)
+        {
+            estado = "warning";
+        }
+        return estado;
+    }
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            <div class="m-portlet__body m--margin-bottom-5 ">
+                <!--begin: Search Form -->
+                <div class="m-form m-form--label-align-right ">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 order-2 order-xl-1">
+                            <div class="form-group m-form__group row align-items-center">
+                                <div class="col-md-4">
+                                    <div class="m-portlet__head-title ">
+                                        <h3 class="m--regular-font-size-lg4 m--font-bold">
+                                            Reservas
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                            <a href="/Manager/Reservas/Create" class="btn btn-warning m-btn m-btn--icon m-btn--air ">
+                                <span>
+                                    <i class="flaticon-add-circular-button"></i>
+                                    <span>
+                                        Nueva Reserva
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ReservaEstado.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Servicio.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Vehiculo.Placa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.horaReservaLlegada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.horaReservaSalida)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.horaSistemaLLegada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.horaSistemaSalida)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Costo)
-        </th>
-        <th></th>
-    </tr>
+<div class="row ui-sortable" id="m_sortable_portlets">
+    <div class="col-lg-6">
+        @for (var i = 0; i < reservas.Count; i += 2)
+        {
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tabs m-portlet--@Estado(reservas[i].ReservaEstadoId) m-portlet--head-solid-bg m-portlet--bordered m-portlet--sortable">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="flaticon-placeholder-2"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                # @(i + 1)
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("CancelarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-remove"></i>
+                                </a>
+                            </li>
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("TerminarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-check"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div class="row">
+                        <div class="col-4"><b>Servicio</b></div>
+                        <div class="col-8">@reservas[i].Servicio.Descripcion</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Placa</b></div>
+                        <div class="col-8">@reservas[i].Vehiculo.Placa</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora LLegada (R)</b></div>
+                        <div class="col-8">@reservas[i].horaReservaLlegada</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora Salida (R)</b></div>
+                        <div class="col-8">@reservas[i].horaReservaSalida</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora LLegada (S)</b></div>
+                        <div class="col-8">@reservas[i].horaSistemaLLegada</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora Salida (S)</b></div>
+                        <div class="col-8">@reservas[i].horaSistemaSalida</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Costo</b></div>
+                        <div class="col-8">@reservas[i].Costo</div>
+                    </div>
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservaEstado.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servicio.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vehiculo.Placa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.horaReservaLlegada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.horaReservaSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.horaSistemaLLegada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.horaSistemaSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Costo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReservaId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReservaId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReservaId })
-        </td>
-    </tr>
-}
+            </div>
+            <!--end::Portlet-->
+        }
+    </div>
+    <div class="col-lg-6">
+        @for (var i = 1; i < reservas.Count; i += 2)
+        {
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tabs m-portlet--@Estado(reservas[i].ReservaEstadoId) m-portlet--head-solid-bg m-portlet--bordered m-portlet--sortable">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="flaticon-placeholder-2"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                # @(i + 1)
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("CancelarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-remove"></i>
+                                </a>
+                            </li>
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("TerminarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-check"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div class="row">
+                        <div class="col-4"><b>Servicio</b></div>
+                        <div class="col-8">@reservas[i].Servicio.Descripcion</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Placa</b></div>
+                        <div class="col-8">@reservas[i].Vehiculo.Placa</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora LLegada (R)</b></div>
+                        <div class="col-8">@reservas[i].horaReservaLlegada</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora Salida (R)</b></div>
+                        <div class="col-8">@reservas[i].horaReservaSalida</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora LLegada (S)</b></div>
+                        <div class="col-8">@reservas[i].horaSistemaLLegada</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Hora Salida (S)</b></div>
+                        <div class="col-8">@reservas[i].horaSistemaSalida</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"><b>Costo</b></div>
+                        <div class="col-8">@reservas[i].Costo</div>
+                    </div>
+                </div>
 
-</table>
+            </div>
+            <!--end::Portlet-->
+        }
+    </div>
+</div>
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReservaEstado.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Servicio.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehiculo.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaReservaLlegada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaReservaSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaSistemaLLegada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaSistemaSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Costo)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservaEstado.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Servicio.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehiculo.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaReservaLlegada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaReservaSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaSistemaLLegada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaSistemaSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Costo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ReservaId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ReservaId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ReservaId })
+            </td>
+        </tr>
+    }
+
+    </table>*@

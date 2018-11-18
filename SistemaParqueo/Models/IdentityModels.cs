@@ -217,5 +217,8 @@ namespace SistemaParqueo.Models
                 .WithRequired(e => e.Vehiculo)
                 .WillCascadeOnDelete(false);
         }
+
+        //public System.Data.Entity.DbSet<SistemaParqueo.Models.ApplicationUser> ApplicationUsers { get; set; }
+        
     }
 }

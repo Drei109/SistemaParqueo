@@ -51,7 +51,15 @@
                 </span>
             </a>
         </li>
-       
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <a href="@Url.Action("Index", null, new { area = "Admin", controller = "Personas" }, Request.Url?.Scheme)" class="m-menu__link">
+                <i class="m-menu__link-icon  flaticon-suitcase"></i>
+                <span class="m-menu__link-text">
+                    Personas
+                </span>
+            </a>
+        </li>
+
     </ul>
 </div>
 <!-- END: Aside Menu -->

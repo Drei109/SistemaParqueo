@@ -153,7 +153,13 @@ namespace SistemaParqueo.Areas.Manager.Controllers
                 ViewBag.VehiculoId = new SelectList(db.Vehiculo.Where(m => m.ClienteId == cliente.ClienteId), "VehiculoId", "Placa");
                 return View("Create");
             }
-            return View("CrearCliente");
+
+            var crearClienteViewModel = new CrearClienteViewModel()
+            {
+                DNI = clienteDNI
+            };
+
+            return RedirectToAction("CrearCliente", "Reservas", crearClienteViewModel);
         }
 
         [HttpGet]

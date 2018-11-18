@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SistemaParqueo.Models.Servicio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cochera.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsPorHora)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cochera.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsPorHora)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ServicioId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ServicioId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ServicioId })
+        </td>
+    </tr>
+}
+
+</table>
