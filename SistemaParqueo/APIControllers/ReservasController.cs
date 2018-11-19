@@ -18,15 +18,17 @@ namespace SistemaParqueo.APIControllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Reservas
-        public IQueryable<Reserva> GetReserva()
+        public List<Reserva> GetReserva()
         {
-            return db.Reserva;
+            db.Configuration.LazyLoadingEnabled = false;
+            return db.Reserva.ToList();
         }
 
         // GET: api/Reservas/5
         [ResponseType(typeof(Reserva))]
         public IHttpActionResult GetReserva(int id)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             Reserva reserva = db.Reserva.Find(id);
             if (reserva == null)
             {
