@@ -2,10 +2,10 @@
 <h2>Crear</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Edit", "Cocheras", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Cochera</h4>
         <hr />
@@ -53,7 +53,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="fotoFile" name="fotoFile">
+                    <label class="custom-file-label" for="customFile">
+                        Escoger Archivo
+                    </label>
+                </div>
                 @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
             </div>
         </div>

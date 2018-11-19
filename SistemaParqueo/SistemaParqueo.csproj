@@ -204,6 +204,7 @@
     <Compile Include="APIControllers\ClientesController.cs" />
     <Compile Include="APIControllers\CocherasController.cs" />
     <Compile Include="APIControllers\ReservasController.cs" />
+    <Compile Include="APIControllers\ServiciosController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -649,6 +650,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Cocheras\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

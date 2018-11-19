@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using SistemaParqueo.Models;
@@ -49,13 +50,20 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CocheraId,Nombre,Direccion,Descripcion,Longitud,Latitud,EmpresaId,CocheraEstadoId,CodigoPostal")] Cochera cochera)
+        public ActionResult Create([Bind(Include = "CocheraId,Nombre,Direccion,Descripcion,Longitud,Latitud,EmpresaId,CocheraEstadoId,CodigoPostal")] Cochera cochera, HttpPostedFileBase fotoFile)
         {
-            ModelState.Remove("Foto");
+            
             if (ModelState.IsValid)
             {
                 db.Cochera.Add(cochera);
                 db.SaveChanges();
+
+                var timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+
+                cochera.Foto = timeStamp + ".png";
+                db.SaveChanges();
+                fotoFile?.SaveAs(Server.MapPath("~/Uploads/Cocheras/" + cochera.Foto));
+
                 return RedirectToAction("Index");
             }
 
@@ -88,13 +96,27 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Cochera cochera, HttpPostedFileBase fotoFile)
         {
-            ModelState.Remove("Foto");
+
             if (ModelState.IsValid)
             {
-                
+
                 db.Entry(cochera).State = EntityState.Modified;
-                
                 db.SaveChanges();
+
+                if (fotoFile != null)
+                {
+                    var fotoAntigua = Request.MapPath("~/Uploads/Cocheras/" + cochera.Foto);
+                    if (System.IO.File.Exists(fotoAntigua))
+                    {
+                        System.IO.File.Delete(fotoAntigua);
+                    }
+
+                    var timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                    cochera.Foto = timeStamp + ".png";
+                    db.SaveChanges();
+                    fotoFile?.SaveAs(Server.MapPath("~/Uploads/Cocheras/" + cochera.Foto));
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.CocheraEstadoId = new SelectList(db.CocheraEstado, "CocheraEstadoId", "Descripcion", cochera.CocheraEstadoId);

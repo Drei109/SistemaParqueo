@@ -68,7 +68,7 @@
                                 <td>@item.Descripcion</td>
                                 <td>@item.Direccion</td>
                                 <td>
-                                    <img src="@item.Foto" alt="" height="10"/>
+                                    <img src="~/Uploads/Cocheras/@item.Foto" alt="" height="75"/>
                                 </td>
                                 <td>
                                     @Html.ActionLink("Editar", "Edit", new { id = item.CocheraId }, new { @class = "btn m-btn--square  btn-outline-warning m-btn m-btn--outline-2x" })
