@@ -134,3 +134,4 @@ C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\System.Web.Http.xml
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\System.Web.Http.WebHost.xml
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.csprojAssemblyReference.cache
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.addedvalidationtoServicioscolumns.resources

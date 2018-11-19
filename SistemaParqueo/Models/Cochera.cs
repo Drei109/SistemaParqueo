@@ -40,6 +40,8 @@ namespace SistemaParqueo.Models
         public string Foto { get; set; }
 
         [StringLength(15)]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\/]?){0,})(?:[\-\.\ \\/]?(?:#|ext\.?|extension|x)[\-\.\ \\/]?(\d+))*$", ErrorMessage = "Número de teléfono no válido")]
         public string Telefono { get; set; }
 
         [StringLength(250)]

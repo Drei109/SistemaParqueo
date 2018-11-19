@@ -1,4 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(SistemaParqueo.Startup))]
@@ -8,6 +11,9 @@ namespace SistemaParqueo
     {
         public void Configuration(IAppBuilder app)
         {
+            var defaultCulture = new CultureInfo("es-PE");
+            Thread.CurrentThread.CurrentCulture = defaultCulture;
+            Thread.CurrentThread.CurrentUICulture = defaultCulture;
             ConfigureAuth(app);
         }
     }

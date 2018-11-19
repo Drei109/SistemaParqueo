@@ -20,10 +20,12 @@ namespace SistemaParqueo.Models
 
         public int CocheraId { get; set; }
 
+        [Required]
         [StringLength(250)]
         public string Descripcion { get; set; }
 
         [Column(TypeName = "money")]
+        [Required]
         [Range(0, double.MaxValue)]
         public decimal? Costo { get; set; }
 
