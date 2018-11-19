@@ -29,6 +29,7 @@ namespace SistemaParqueo.APIControllers
         [ResponseType(typeof(Cochera))]
         public IHttpActionResult GetCochera(int id)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             Cochera cochera = db.Cochera.Find(id);
 
             if (cochera == null)

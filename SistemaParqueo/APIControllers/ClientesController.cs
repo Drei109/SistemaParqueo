@@ -28,6 +28,7 @@ namespace SistemaParqueo.APIControllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult GetCliente(int id)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             Cliente cliente = db.Cliente.Find(id);
             if (cliente == null)
             {
