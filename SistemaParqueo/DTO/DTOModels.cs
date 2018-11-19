@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SistemaParqueo.Models;
+// ReSharper disable InconsistentNaming
 
 namespace SistemaParqueo.DTO
 {
@@ -21,4 +22,22 @@ namespace SistemaParqueo.DTO
         public string HorarioAtencion { get; set; }
         public List<Servicio> Servicios { get; set; }
     }
+
+    public class ReservaDTO
+    {
+        public decimal costo { get; set; }
+        public TimeSpan? hora_reserva_llegada { get; set; }
+
+        public TimeSpan? hora_reserva_salida { get; set; }
+
+        public TimeSpan? hora_sistema_llegada { get; set; }
+
+        public TimeSpan? hora_sistema_salida { get; set; }
+        public int id { get; set; }
+        public int? reserva_estado_id { get; set; }
+        public int servicio_id { get; set; }
+        public int vehiculo_id { get; set; }
+
+    }
+
 }

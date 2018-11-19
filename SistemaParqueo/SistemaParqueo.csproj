@@ -203,6 +203,7 @@
   <ItemGroup>
     <Compile Include="APIControllers\ClientesController.cs" />
     <Compile Include="APIControllers\CocherasController.cs" />
+    <Compile Include="APIControllers\ReservasController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
