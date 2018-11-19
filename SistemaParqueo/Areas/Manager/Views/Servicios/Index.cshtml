@@ -24,7 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.EsPorHora)
         </th>
-        <th></th>
+        <th>
+            Controles
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -42,9 +44,9 @@
             @Html.DisplayFor(modelItem => item.EsPorHora)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ServicioId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ServicioId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ServicioId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ServicioId }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ServicioId }) |*@
+            @Html.ActionLink("Borrar", "Delete", new { id=item.ServicioId })
         </td>
     </tr>
 }

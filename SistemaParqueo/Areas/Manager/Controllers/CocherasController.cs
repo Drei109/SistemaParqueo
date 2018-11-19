@@ -49,8 +49,9 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CocheraId,Nombre,Direccion,Descripcion,Longitud,Latitud,Foto,EmpresaId,CocheraEstadoId,CodigoPostal")] Cochera cochera)
+        public ActionResult Create([Bind(Include = "CocheraId,Nombre,Direccion,Descripcion,Longitud,Latitud,EmpresaId,CocheraEstadoId,CodigoPostal")] Cochera cochera)
         {
+            ModelState.Remove("Foto");
             if (ModelState.IsValid)
             {
                 db.Cochera.Add(cochera);

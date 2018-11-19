@@ -39,7 +39,7 @@ namespace SistemaParqueo.Models
         [StringLength(250)]
         public string Foto { get; set; }
 
-        [StringLength(30)]
+        [StringLength(15)]
         public string Telefono { get; set; }
 
         [StringLength(250)]
@@ -49,7 +49,7 @@ namespace SistemaParqueo.Models
 
         public int? CocheraEstadoId { get; set; }
 
-        [StringLength(9)]
+        [StringLength(9, MinimumLength = 6)]
         public string CodigoPostal { get; set; }
 
         public virtual CocheraEstado CocheraEstado { get; set; }

@@ -24,6 +24,7 @@ namespace SistemaParqueo.Models
         public string Descripcion { get; set; }
 
         [Column(TypeName = "money")]
+        [Range(0, double.MaxValue)]
         public decimal? Costo { get; set; }
 
         public bool? EsPorHora { get; set; }
