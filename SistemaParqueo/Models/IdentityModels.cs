@@ -162,10 +162,6 @@ namespace SistemaParqueo.Models
                 .Property(e => e.Direccion)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Persona>()
-                .Property(e => e.Email)
-                .IsUnicode(false);
-
             modelBuilder.Entity<PersonaEstado>()
                 .Property(e => e.Descripcion)
                 .IsUnicode(false);

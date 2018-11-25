@@ -24,6 +24,7 @@ namespace SistemaParqueo.Models
         public string Nombre { get; set; }
 
         [StringLength(250)]
+        [Required]
         public string Direccion { get; set; }
 
         [StringLength(250)]
@@ -31,9 +32,11 @@ namespace SistemaParqueo.Models
         public string Descripcion { get; set; }
 
         [StringLength(250)]
+        [Required]
         public string Longitud { get; set; }
 
         [StringLength(250)]
+        [Required]
         public string Latitud { get; set; }
 
         [StringLength(250)]
@@ -51,7 +54,7 @@ namespace SistemaParqueo.Models
 
         public int? CocheraEstadoId { get; set; }
 
-        [StringLength(9, MinimumLength = 6)]
+        [StringLength(9, MinimumLength = 4)]
         public string CodigoPostal { get; set; }
 
         public virtual CocheraEstado CocheraEstado { get; set; }

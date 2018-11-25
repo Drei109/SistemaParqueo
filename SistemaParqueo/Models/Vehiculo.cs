@@ -20,7 +20,7 @@ namespace SistemaParqueo.Models
         public int? ClienteId { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(10, MinimumLength = 6)]
         public string Placa { get; set; }
 
         public int? TipoVehiculoId { get; set; }

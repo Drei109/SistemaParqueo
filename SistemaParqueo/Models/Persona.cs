@@ -24,16 +24,20 @@ namespace SistemaParqueo.Models
         public string DNI { get; set; }
 
         [StringLength(15)]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\/]?){0,})(?:[\-\.\ \\/]?(?:#|ext\.?|extension|x)[\-\.\ \\/]?(\d+))*$", ErrorMessage = "Número de teléfono no válido")]
         public string Telefono { get; set; }
 
         [StringLength(15)]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\/]?){0,})(?:[\-\.\ \\/]?(?:#|ext\.?|extension|x)[\-\.\ \\/]?(\d+))*$", ErrorMessage = "Número de celular no válido")]
         public string Celular { get; set; }
 
-        [StringLength(250)]
+        [StringLength(250, MinimumLength = 10)]
         public string Direccion { get; set; }
 
-        [StringLength(250)]
-        public string Email { get; set; }
+        //[StringLength(250)]
+        //public string Email { get; set; }
 
         public int? PersonaEstadoId { get; set; }
 

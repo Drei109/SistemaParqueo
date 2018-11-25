@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201811191539473_added validation to Servicios columns.Designer.cs">
       <DependentUpon>201811191539473_added validation to Servicios columns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811251812173_dbChange.cs" />
+    <Compile Include="Migrations\201811251812173_dbChange.Designer.cs">
+      <DependentUpon>201811251812173_dbChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -693,6 +697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811191539473_added validation to Servicios columns.resx">
       <DependentUpon>201811191539473_added validation to Servicios columns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251812173_dbChange.resx">
+      <DependentUpon>201811251812173_dbChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
