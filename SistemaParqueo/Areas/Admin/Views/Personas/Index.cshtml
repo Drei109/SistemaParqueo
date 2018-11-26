@@ -36,9 +36,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Direccion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
         <th></th>
     </tr>
 
@@ -69,12 +66,9 @@
             @Html.DisplayFor(modelItem => item.Direccion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PersonaId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PersonaId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PersonaId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.PersonaId }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.PersonaId }) |*@
+            @Html.ActionLink("Borrar", "Delete", new { id=item.PersonaId })
         </td>
     </tr>
 }
