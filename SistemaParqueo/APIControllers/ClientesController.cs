@@ -77,6 +77,11 @@ namespace SistemaParqueo.APIControllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult PostCliente(Cliente cliente)
         {
+            ModelState.Remove("ClienteId");
+            ModelState.Remove("PersonaEstadoId");
+            ModelState.Remove("ClienteEstado");
+            ModelState.Remove("Vehiculo");
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

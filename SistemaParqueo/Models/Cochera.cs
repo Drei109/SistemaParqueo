@@ -17,6 +17,7 @@ namespace SistemaParqueo.Models
             Servicio = new HashSet<Servicio>();
         }
 
+
         public int CocheraId { get; set; }
 
         [Required]
@@ -33,10 +34,12 @@ namespace SistemaParqueo.Models
 
         [StringLength(250)]
         [Required]
+        [RegularExpression(@"^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$", ErrorMessage = "Longitud no válida")]
         public string Longitud { get; set; }
 
         [StringLength(250)]
         [Required]
+        [RegularExpression(@"^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$", ErrorMessage = "Latitud no válida")]
         public string Latitud { get; set; }
 
         [StringLength(250)]
