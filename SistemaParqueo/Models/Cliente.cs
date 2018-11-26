@@ -44,6 +44,9 @@ namespace SistemaParqueo.Models
         [StringLength(250)]
         public string Email { get; set; }
 
+        [StringLength(250)]
+        public string UID { get; set; }
+
         public int? PersonaEstadoId { get; set; }
 
         public virtual ClienteEstado ClienteEstado { get; set; }

@@ -231,6 +231,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Migrations\201810292125106_InitialModel.cs" />
     <Compile Include="Migrations\201810292125106_InitialModel.Designer.cs">
       <DependentUpon>201810292125106_InitialModel.cs</DependentUpon>
@@ -266,6 +267,10 @@
     <Compile Include="Migrations\201811251812173_dbChange.cs" />
     <Compile Include="Migrations\201811251812173_dbChange.Designer.cs">
       <DependentUpon>201811251812173_dbChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811260511067_AddedUItoCliente.cs" />
+    <Compile Include="Migrations\201811260511067_AddedUItoCliente.Designer.cs">
+      <DependentUpon>201811260511067_AddedUItoCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -700,6 +705,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811251812173_dbChange.resx">
       <DependentUpon>201811251812173_dbChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811260511067_AddedUItoCliente.resx">
+      <DependentUpon>201811260511067_AddedUItoCliente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
