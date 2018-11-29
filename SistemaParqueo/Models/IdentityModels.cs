@@ -217,5 +217,6 @@ namespace SistemaParqueo.Models
 
         //public System.Data.Entity.DbSet<SistemaParqueo.Models.ApplicationUser> ApplicationUsers { get; set; }
         
+
     }
 }

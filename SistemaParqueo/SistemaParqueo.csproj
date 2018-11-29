@@ -213,6 +213,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CocherasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CocheraUsuariosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmpresasController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PersonasController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />
@@ -271,6 +273,10 @@
     <Compile Include="Migrations\201811260511067_AddedUItoCliente.cs" />
     <Compile Include="Migrations\201811260511067_AddedUItoCliente.Designer.cs">
       <DependentUpon>201811260511067_AddedUItoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811291619103_CantidadEspaciosAddedToCochera.cs" />
+    <Compile Include="Migrations\201811291619103_CantidadEspaciosAddedToCochera.Designer.cs">
+      <DependentUpon>201811291619103_CantidadEspaciosAddedToCochera.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -611,6 +617,21 @@
     <Content Include="Areas\Admin\Views\Personas\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Personas\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Personas\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Empresas\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Empresas\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Empresas\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Empresas\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Empresas\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CocheraUsuarios\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CocheraUsuarios\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CocheraUsuarios\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CocheraUsuarios\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CocheraUsuarios\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UsuariosRoles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UsuariosRoles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UsuariosRoles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UsuariosRoles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UsuariosRoles\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
@@ -708,6 +729,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811260511067_AddedUItoCliente.resx">
       <DependentUpon>201811260511067_AddedUItoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811291619103_CantidadEspaciosAddedToCochera.resx">
+      <DependentUpon>201811291619103_CantidadEspaciosAddedToCochera.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

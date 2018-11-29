@@ -29,7 +29,20 @@ namespace SistemaParqueo.APIControllers
         public IHttpActionResult GetCliente(int id)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            Cliente cliente = db.Cliente.Include(m => m.Vehiculo).FirstOrDefault(n => n.ClienteId == id);
+            var cliente = db.Cliente.Include(m => m.Vehiculo).FirstOrDefault(n => n.ClienteId == id);
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cliente);
+        }
+
+        [ResponseType(typeof(Cliente))]
+        public IHttpActionResult GetCliente(string UID)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            var  cliente = db.Cliente.Include(m => m.Vehiculo).FirstOrDefault(n => n.UID == UID);
             if (cliente == null)
             {
                 return NotFound();

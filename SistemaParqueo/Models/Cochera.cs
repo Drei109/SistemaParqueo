@@ -60,6 +60,8 @@ namespace SistemaParqueo.Models
         [StringLength(9, MinimumLength = 4)]
         public string CodigoPostal { get; set; }
 
+        public int? CantidadEspacios { get; set; }
+
         public virtual CocheraEstado CocheraEstado { get; set; }
 
         public virtual Empresa Empresa { get; set; }
