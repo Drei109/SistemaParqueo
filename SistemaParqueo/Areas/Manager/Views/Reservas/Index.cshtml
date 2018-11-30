@@ -1,4 +1,5 @@
 ﻿@using SistemaParqueo.Areas.Manager.Models
+@using SistemaParqueo.Models
 @model IEnumerable<SistemaParqueo.Models.Reserva>
 
 @{
@@ -29,6 +30,7 @@
         return estado;
     }
 }
+
 
 <div class="row">
     <div class="col-lg-12">
@@ -85,12 +87,17 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("CancelarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("Create", null, new {area = "Manager", controller = "ReservaServicios", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-plus"></i>
+                                </a>
+                            </li>
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("CancelarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("TerminarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("TerminarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-check"></i>
                                 </a>
                             </li>
@@ -127,6 +134,20 @@
                         <div class="col-8">@reservas[i].Costo</div>
                     </div>
                 </div>
+                @if (reservas[i].ReservaServicios != null)
+                {
+
+                    <div class="m-portlet__body">
+                        <div><b>SERVICIOS EXTRA</b></div>
+                        @foreach (var rs in reservas[i].ReservaServicios)
+                        {
+                        <div class="row">
+                            <div class="col-8">@rs.Servicio.Descripcion</div>
+                            <div class="col-4">@rs.Costo</div>
+                        </div>
+                        }
+                    </div>   
+                }
 
             </div>
             <!--end::Portlet-->
@@ -151,12 +172,17 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("CancelarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("Create", null, new {area = "Manager", controller = "ReservaServicios", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-plus"></i>
+                                </a>
+                            </li>
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("CancelarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("TerminarPedido", null, new { area = "Manager", controller = "Reservas", id=@reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("TerminarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-check"></i>
                                 </a>
                             </li>

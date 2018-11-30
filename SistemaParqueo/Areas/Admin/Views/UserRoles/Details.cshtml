@@ -1,0 +1,42 @@
+﻿@model SistemaParqueo.Models.CocheraUsuario
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>CocheraUsuario</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cochera.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cochera.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.User.Email)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CocheraUsuarioId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -222,10 +222,11 @@
     <Compile Include="Areas\Manager\Controllers\CocherasController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\ReservasController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ReservaServiciosController.cs" />
     <Compile Include="Areas\Manager\Controllers\ServiciosController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Manager\Models\ConstantsModel.cs" />
-    <Compile Include="Areas\Manager\Models\CrearClienteViewModel.cs" />
+    <Compile Include="Areas\Manager\Models\ManagerViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -278,8 +279,14 @@
     <Compile Include="Migrations\201811291619103_CantidadEspaciosAddedToCochera.Designer.cs">
       <DependentUpon>201811291619103_CantidadEspaciosAddedToCochera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811302157036_AddedBoletaTables.cs" />
+    <Compile Include="Migrations\201811302157036_AddedBoletaTables.Designer.cs">
+      <DependentUpon>201811302157036_AddedBoletaTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BoletaCabecera.cs" />
+    <Compile Include="Models\BoletaDetalle.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ClienteEstado.cs" />
     <Compile Include="Models\Cochera.cs" />
@@ -632,6 +639,7 @@
     <Content Include="Areas\Admin\Views\UsuariosRoles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\UsuariosRoles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UsuariosRoles\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\ReservaServicios\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
@@ -732,6 +740,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811291619103_CantidadEspaciosAddedToCochera.resx">
       <DependentUpon>201811291619103_CantidadEspaciosAddedToCochera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811302157036_AddedBoletaTables.resx">
+      <DependentUpon>201811302157036_AddedBoletaTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

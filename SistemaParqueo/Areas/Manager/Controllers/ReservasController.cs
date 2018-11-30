@@ -18,7 +18,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // GET: Manager/Reservas
         public ActionResult Index()
         {
-            var reserva = db.Reserva.Include(r => r.ReservaEstado).Include(r => r.Servicio).Include(r => r.Vehiculo);
+            var reserva = db.Reserva.Include(r => r.ReservaEstado).Include(r => r.Servicio).Include(r => r.Vehiculo).Include(r=>r.ReservaServicios);
             return View(reserva.ToList());
         }
 
@@ -154,7 +154,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
                 return View("Create");
             }
 
-            var crearClienteViewModel = new CrearClienteViewModel()
+            var crearClienteViewModel = new ManagerViewModels()
             {
                 DNI = clienteDNI
             };
@@ -165,7 +165,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         [HttpGet]
         public ActionResult CrearCliente(string clienteDNI)
         {
-            var crearClienteViewModel = new CrearClienteViewModel()
+            var crearClienteViewModel = new ManagerViewModels()
             {
                 DNI = clienteDNI
             };
@@ -173,7 +173,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearCliente(CrearClienteViewModel crearClienteViewModel)
+        public ActionResult CrearCliente(ManagerViewModels crearClienteViewModel)
         {
             var cliente = new Cliente()
             {

@@ -138,3 +138,12 @@ C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.dbChange.resources
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.AddedUItoCliente.resources
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.CantidadEspaciosAddedToCochera.resources
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.Net.Http.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.AddedBoletaTables.resources
