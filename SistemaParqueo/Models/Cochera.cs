@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace SistemaParqueo.Models
 {
     using System;
@@ -17,7 +19,7 @@ namespace SistemaParqueo.Models
             Servicio = new HashSet<Servicio>();
         }
 
-
+        [JsonProperty(PropertyName = "id")]
         public int CocheraId { get; set; }
 
         [Required]
