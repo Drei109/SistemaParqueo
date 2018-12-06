@@ -18,7 +18,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // GET: Manager/Reservas
         public ActionResult Index()
         {
-            var reserva = db.Reserva.Include(r => r.ReservaEstado).Include(r => r.Servicio).Include(r => r.Vehiculo).Include(r=>r.ReservaServicios);
+            var reserva = db.Reserva.Include(r => r.ReservaEstado).Include(r => r.Servicio).Include(r => r.Vehiculo).Include(r=>r.ReservaServicios).Where(r => r.ReservaEstadoId == EstadoReserva.Enviado || r.ReservaEstadoId == EstadoReserva.Ocupado);
             return View(reserva.ToList());
         }
 
@@ -60,6 +60,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
 
             if (ModelState.IsValid)
             {
+                reserva.Costo = (decimal) db.Servicio.Find(reserva.ServicioId).Costo;
                 db.Reserva.Add(reserva);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -207,6 +208,80 @@ namespace SistemaParqueo.Areas.Manager.Controllers
             }
             
             return View("Create");
+        }
+
+        public ActionResult CancelarReserva(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var reserva = db.Reserva.Find(id);
+            if (reserva != null) reserva.ReservaEstadoId = EstadoReserva.Cancelado;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Reservas");
+        }
+
+        public ActionResult TerminarReserva(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var reserva = db.Reserva.Find(id);
+            if (reserva != null) reserva.ReservaEstadoId = EstadoReserva.Terminado;
+            db.SaveChanges();
+
+
+            //Boleta generation
+
+            var boletaCabecera = new BoletaCabecera()
+            {
+                ReservaId = reserva.ReservaId,
+                Fecha = DateTime.Today,
+                ClienteId = (int)reserva.Vehiculo.ClienteId,
+                Estado = EstadoBoleta.Generado,
+                Subtotal = 0,
+                Total = 0
+            };
+            
+            var boletaDetalles = new List<BoletaDetalle>();
+
+            var boletaCabeceraDeReserva = new BoletaDetalle()
+            {
+                ServicioId = reserva.ServicioId,
+                Cantidad = 1,
+                Total = (decimal) reserva.Servicio.Costo
+            };
+            boletaDetalles.Add(boletaCabeceraDeReserva);
+
+            foreach (var reservaServicios in db.ReservaServicios.Where(m => m.ReservaId == reserva.ReservaId).ToList())
+            {
+                var boletaCabeceraDeServicios = new BoletaDetalle()
+                {
+                    ServicioId = reservaServicios.ServicioId,
+                    Cantidad = (int) reservaServicios.Cantidad,
+                    Total = reservaServicios.Costo
+                };
+                boletaDetalles.Add(boletaCabeceraDeServicios);
+            }
+
+            foreach (var boletaDetalle in boletaDetalles)
+            {
+                boletaCabecera.Subtotal += boletaDetalle.Total;
+            }
+            boletaCabecera.Total = boletaCabecera.Subtotal * (1  + IGV.Valor);
+
+            db.BoletaCabecera.Add(boletaCabecera);
+            db.SaveChanges();
+            foreach (var boletaDetalle in boletaDetalles)
+            {
+                boletaDetalle.BoletaCabeceraId = boletaCabecera.BoletaCabeceraId;
+                db.BoletaDetalle.Add(boletaDetalle);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Reservas");
         }
     }
 }

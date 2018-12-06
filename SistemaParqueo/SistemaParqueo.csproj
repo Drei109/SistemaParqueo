@@ -219,6 +219,7 @@
     <Compile Include="Areas\Admin\Controllers\PersonasController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\Admin\Models\AdminViewModels.cs" />
+    <Compile Include="Areas\Manager\Controllers\BoletaCabecerasController.cs" />
     <Compile Include="Areas\Manager\Controllers\CocherasController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\ReservasController.cs" />
@@ -640,6 +641,11 @@
     <Content Include="Areas\Admin\Views\UsuariosRoles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UsuariosRoles\Index.cshtml" />
     <Content Include="Areas\Manager\Views\ReservaServicios\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\BoletaCabeceras\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\BoletaCabeceras\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\BoletaCabeceras\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\BoletaCabeceras\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\BoletaCabeceras\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />

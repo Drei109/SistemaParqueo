@@ -23,6 +23,10 @@
         {
             estado = "warning";
         }
+        else if (estadoReserva == EstadoReserva.Ocupado)
+        {
+            estado = "info";
+        }
         else if (estadoReserva == null)
         {
             estado = "warning";
@@ -92,12 +96,12 @@
                                 </a>
                             </li>
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("CancelarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("CancelarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("TerminarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-check"></i>
                                 </a>
                             </li>
@@ -134,7 +138,7 @@
                         <div class="col-8">@reservas[i].Costo</div>
                     </div>
                 </div>
-                @if (reservas[i].ReservaServicios != null)
+                @if (reservas[i].ReservaServicios.Count != 0)
                 {
 
                     <div class="m-portlet__body">
@@ -177,12 +181,12 @@
                                 </a>
                             </li>
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("CancelarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("CancelarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
                             <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("TerminarPedido", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-check"></i>
                                 </a>
                             </li>
@@ -219,6 +223,20 @@
                         <div class="col-8">@reservas[i].Costo</div>
                     </div>
                 </div>
+                @if (reservas[i].ReservaServicios.Count != 0)
+                {
+
+                    <div class="m-portlet__body">
+                        <div><b>SERVICIOS EXTRA</b></div>
+                        @foreach (var rs in reservas[i].ReservaServicios)
+                        {
+                            <div class="row">
+                                <div class="col-8">@rs.Servicio.Descripcion</div>
+                                <div class="col-4">@rs.Costo</div>
+                            </div>
+                        }
+                    </div>   
+                }
 
             </div>
             <!--end::Portlet-->

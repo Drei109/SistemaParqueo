@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,10 +13,10 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Manager/ReservaServicios
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
 
         [HttpGet]
@@ -23,7 +24,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         {
             var servicioId = db.Reserva.Find(id).ServicioId;
             var cocheraId = db.Servicio.Find(servicioId).CocheraId;
-            var serviciosCochera = db.Servicio.Where(m => m.CocheraId == cocheraId).ToList();
+            var serviciosCochera = db.Servicio.Where(m => m.CocheraId == cocheraId && m.EsPorHora == false).ToList();
             ViewBag.serviciosCochera = new SelectList(serviciosCochera, "ServicioId", "Descripcion");
             ViewBag.reservaId = id;
             return View();

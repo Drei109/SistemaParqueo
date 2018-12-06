@@ -1,0 +1,162 @@
+﻿@model SistemaParqueo.Models.BoletaCabecera
+
+@{
+    ViewBag.Title = "Boleta";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-portlet" id="print">
+    <div class="m-portlet__body m-portlet__body--no-padding">
+        <div class="m-invoice-2">
+            <div class="m-invoice__wrapper">
+                <div class="m-invoice__head">
+                    <div class="m-invoice__container m-invoice__container--centered">
+                        <div class="m-invoice__logo">
+                            <a href="#">
+                                <h1>
+                                    BOLETA
+                                </h1>
+                            </a>
+                            <a href="#">
+                                <h2>SISTEMA<b> PARQUEO</b></h2>
+                            </a>
+                        </div>
+                        <span class="m-invoice__desc">
+                            <span>
+                                www.sparqueo.com
+                            </span>
+                            <span>
+                                Tacna - Perú
+                            </span>
+                        </span>
+                        <div class="m-invoice__items">
+                            <div class="m-invoice__item">
+                                <span class="m-invoice__subtitle">
+                                    FECHA
+                                </span>
+                                <span class="m-invoice__text">
+                                    @Model.Fecha.ToShortDateString()
+                                </span>
+                            </div>
+                            <div class="m-invoice__item">
+                                <span class="m-invoice__subtitle">
+                                    BOLETA NO.
+                                </span>
+                                <span class="m-invoice__text">
+                                    @Model.BoletaCabeceraId
+                                </span>
+                            </div>
+                            <div class="m-invoice__item">
+                                <span class="m-invoice__subtitle">
+                                    CLIENTE.
+                                </span>
+                                <span class="m-invoice__text">
+                                    @Model.Cliente.Nombre @Model.Cliente.Apellido
+                                    <br>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-invoice__body m-invoice__body--centered">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        SERVICIO
+                                    </th>
+                                    <th>
+                                        CANTIDAD
+                                    </th>
+                                    <th>
+                                        PRECIO UNITARIO
+                                    </th>
+                                    <th>
+                                        TOTAL
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detalle in Model.BoletaDetalle)
+                                {
+                                    <tr>
+                                        <td>
+                                            @detalle.Servicio.Descripcion
+                                        </td>
+                                        <td>
+                                            @($"{detalle.Cantidad:0}")
+                                        </td>
+                                        <td>
+                                            @($"{detalle.Servicio.Costo:0.00}")
+                                        </td>
+                                        <td class="m--font-danger">
+                                            @($"{detalle.Total:0.00}")
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="m-invoice__footer">
+                    <div class="m-invoice__table  m-invoice__table--centered table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th>
+                                        FECHA
+                                    </th>
+                                    <th>
+                                        SUBTOTAL
+                                    </th>
+                                    <th>
+                                        TOTAL
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @Model.Fecha.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @($"{Model.Subtotal:0.00}")
+                                    </td>
+                                    <td class="m--font-danger">
+                                        @($"{Model.Total:0.00}")
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <a href="@Url.Action("Index", null, new {area = "Manager", controller = "BoletaCabeceras"}, Request.Url?.Scheme)" class="btn btn-primary">
+            Regresar
+        </a>
+        <button class="btn btn-focus" onclick="printDiv('print');">IMPRIMIR</button>
+    </div>
+</div>
+
+<script>
+    function printDiv(eleId) {
+        var PW = window.open('', '_blank', 'Print content');
+        PW.document.write('<link href="/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />');
+        PW.document.write('<link href="/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />');
+        PW.document.write(document.getElementById(eleId).innerHTML);
+        PW.document.close();
+        PW.focus();
+        PW.print();
+        PW.close();
+    }
+</script>
