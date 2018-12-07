@@ -4,8 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using SistemaParqueo.Models;
 
 namespace SistemaParqueo.Areas.Admin.Controllers
@@ -64,6 +68,13 @@ namespace SistemaParqueo.Areas.Admin.Controllers
         // GET: Admin/Usuarios/Edit/5
         public ActionResult Edit(string id)
         {
+            var roleStore = new RoleStore<IdentityRole>(db);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            var userRole = userManager.GetRoles(id).ToList().FirstOrDefault();
+            var roles = roleManager.Roles.ToList();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -73,7 +84,10 @@ namespace SistemaParqueo.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.EmpresaId = new SelectList(db.Empresa, "EmpresaId", "Nombre", applicationUser.EmpresaId);
+            ViewBag.RoleId = new SelectList(roles, "Name", "Name", userRole);
+
             return View(applicationUser);
         }
 
@@ -82,11 +96,22 @@ namespace SistemaParqueo.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmpresaId,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Edit(ApplicationUser applicationUser, string RoleId)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(applicationUser).State = EntityState.Modified;
+                //var oldUserRole = db.Users.Find(applicationUser.Id).Roles.ToList().FirstOrDefault(m => m.UserId == applicationUser.Id)?.RoleId;
+                //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+
+                //var oldUserRole = Roles.Provider.GetRolesForUser(applicationUser.UserName);
+                //var test = oldUserRole.ToList().FirstOrDefault();
+
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var oldUserRoles = userManager.GetRoles(applicationUser.Id);
+                userManager.RemoveFromRoles(applicationUser.Id, oldUserRoles.ToArray());
+                userManager.AddToRole(applicationUser.Id, RoleId);
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

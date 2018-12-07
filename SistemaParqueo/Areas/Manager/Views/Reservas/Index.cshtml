@@ -21,15 +21,15 @@
         }
         else if (estadoReserva == EstadoReserva.Terminado)
         {
-            estado = "warning";
+            estado = "danger";
         }
         else if (estadoReserva == EstadoReserva.Ocupado)
         {
-            estado = "info";
+            estado = "warning";
         }
         else if (estadoReserva == null)
         {
-            estado = "warning";
+            estado = "danger";
         }
         return estado;
     }
@@ -95,16 +95,35 @@
                                     <i class="la la-plus"></i>
                                 </a>
                             </li>
+
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("Edit", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-edit"></i>
+                                </a>
+                            </li>
+
                             <li class="m-portlet__nav-item">
                                 <a href="@Url.Action("CancelarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
-                            <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
-                                    <i class="la la-check"></i>
-                                </a>
-                            </li>
+                            @if (reservas[i].ReservaEstadoId == EstadoReserva.Enviado)
+                            {
+                                <li class="m-portlet__nav-item">
+                                    <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                        <i class="la la-check"></i>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="m-portlet__nav-item">
+                                    <a href="@Url.Action("OcuparReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                        <i class="la la-check"></i>
+                                    </a>
+                                </li>
+                            }
+
                         </ul>
                     </div>
                 </div>
@@ -180,16 +199,35 @@
                                     <i class="la la-plus"></i>
                                 </a>
                             </li>
+
+                            <li class="m-portlet__nav-item">
+                                <a href="@Url.Action("Edit", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <i class="la la-edit"></i>
+                                </a>
+                            </li>
+
                             <li class="m-portlet__nav-item">
                                 <a href="@Url.Action("CancelarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
-                            <li class="m-portlet__nav-item">
-                                <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
-                                    <i class="la la-check"></i>
-                                </a>
-                            </li>
+                            @if (reservas[i].ReservaEstadoId == EstadoReserva.Enviado)
+                            {
+                                <li class="m-portlet__nav-item">
+                                    <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                        <i class="la la-check"></i>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="m-portlet__nav-item">
+                                    <a href="@Url.Action("OcuparReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                        <i class="la la-check"></i>
+                                    </a>
+                                </li>
+                            }
+
                         </ul>
                     </div>
                 </div>

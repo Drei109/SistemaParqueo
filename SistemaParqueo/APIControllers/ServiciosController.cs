@@ -37,6 +37,14 @@ namespace SistemaParqueo.APIControllers
             return Ok(servicio);
         }
 
+        [ResponseType(typeof(List<Servicio>))]
+        public List<Servicio> GetServicio(int? CocheraId)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            var servicios = db.Servicio.Where(m => m.CocheraId == CocheraId).ToList();
+            return servicios;
+        }
+
         // PUT: api/Servicios/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutServicio(int id, Servicio servicio)

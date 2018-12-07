@@ -60,7 +60,9 @@ namespace SistemaParqueo.Areas.Manager.Controllers
 
             if (ModelState.IsValid)
             {
-                reserva.Costo = (decimal) db.Servicio.Find(reserva.ServicioId).Costo;
+                var minutes = reserva.horaSistemaSalida.Value.TotalMinutes - reserva.horaSistemaLLegada.Value.TotalMinutes;
+                reserva.Costo = (decimal) ((minutes *  (double) db.Servicio.Find(reserva.ServicioId).Costo) / 60);
+                reserva.ReservaEstadoId = EstadoReserva.Ocupado;
                 db.Reserva.Add(reserva);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -97,9 +99,27 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ReservaId,VehiculoId,ServicioId,horaReservaLlegada,horaReservaSalida,horaSistemaLLegada,horaSistemaSalida,Costo,ReservaEstadoId")] Reserva reserva)
         {
+            ModelState.Remove("Costo");
+            ModelState.Remove("ReservaEstadoId");
+
             if (ModelState.IsValid)
             {
                 db.Entry(reserva).State = EntityState.Modified;
+                if(reserva.ReservaEstadoId == EstadoReserva.Ocupado)
+                {
+                    var minutes = reserva.horaSistemaSalida.Value.TotalMinutes - reserva.horaSistemaLLegada.Value.TotalMinutes;
+                    reserva.Costo = (decimal)((minutes * (double)db.Servicio.Find(reserva.ServicioId).Costo) / 60);
+                }else if (reserva.ReservaEstadoId == EstadoReserva.Enviado)
+                {
+                    var minutes = reserva.horaReservaSalida.Value.TotalMinutes - reserva.horaReservaLlegada.Value.TotalMinutes;
+                    reserva.Costo = (decimal)((minutes * (double)db.Servicio.Find(reserva.ServicioId).Costo) / 60);
+                }
+
+                foreach (var reservaServicios in db.ReservaServicios.Where(m => m.ReservaId == reserva.ReservaId).ToList())
+                {
+                    reserva.Costo += reservaServicios.Costo;
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -155,7 +175,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
                 return View("Create");
             }
 
-            var crearClienteViewModel = new ManagerViewModels()
+            var crearClienteViewModel = new CrearClienteViewModel()
             {
                 DNI = clienteDNI
             };
@@ -166,7 +186,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         [HttpGet]
         public ActionResult CrearCliente(string clienteDNI)
         {
-            var crearClienteViewModel = new ManagerViewModels()
+            var crearClienteViewModel = new CrearClienteViewModel()
             {
                 DNI = clienteDNI
             };
@@ -174,7 +194,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearCliente(ManagerViewModels crearClienteViewModel)
+        public ActionResult CrearCliente(CrearClienteViewModel crearClienteViewModel)
         {
             var cliente = new Cliente()
             {
@@ -280,6 +300,21 @@ namespace SistemaParqueo.Areas.Manager.Controllers
                 db.BoletaDetalle.Add(boletaDetalle);
                 db.SaveChanges();
             }
+
+            return RedirectToAction("Index", "Reservas");
+        }
+
+        public ActionResult OcuparReserva(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var reserva = db.Reserva.Find(id);
+            if (reserva != null) reserva.ReservaEstadoId = EstadoReserva.Ocupado;
+            reserva.horaReservaLlegada = DateTime.Now.TimeOfDay;
+            db.SaveChanges();
 
             return RedirectToAction("Index", "Reservas");
         }

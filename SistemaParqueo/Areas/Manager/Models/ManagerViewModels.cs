@@ -8,7 +8,7 @@ using SistemaParqueo.Models;
 
 namespace SistemaParqueo.Areas.Manager.Models
 {
-    public class ManagerViewModels
+    public class CrearClienteViewModel
     {
         [Required]
         [StringLength(250)]
