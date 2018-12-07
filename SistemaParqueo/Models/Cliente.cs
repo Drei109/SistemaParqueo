@@ -15,6 +15,7 @@ namespace SistemaParqueo.Models
         public Cliente()
         {
             Vehiculo = new HashSet<Vehiculo>();
+            Favoritos = new HashSet<Favoritos>();
         }
 
         [JsonProperty(PropertyName = "id")]
@@ -53,5 +54,7 @@ namespace SistemaParqueo.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vehiculo> Vehiculo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Favoritos> Favoritos { get; set; }
     }
 }

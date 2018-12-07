@@ -52,6 +52,7 @@ namespace SistemaParqueo.Models
         public virtual DbSet<Vehiculo> Vehiculo { get; set; }
         public virtual DbSet<BoletaCabecera> BoletaCabecera { get; set; }
         public virtual DbSet<BoletaDetalle> BoletaDetalle { get; set; }
+        public virtual DbSet<Favoritos> Favoritos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

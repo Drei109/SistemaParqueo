@@ -139,3 +139,4 @@ C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.dll
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.pdb
 C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.csprojAssemblyReference.cache
+C:\Users\Drei\Dropbox\UPT\Contrucción I\SOFTWARE\SistemaParqueo\SistemaParqueo\obj\Debug\SistemaParqueo.Migrations.FavoritosAddedAgain.resources
