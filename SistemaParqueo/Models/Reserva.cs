@@ -37,6 +37,9 @@ namespace SistemaParqueo.Models
 
         public int? ReservaEstadoId { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? Fecha { get; set; }
+
         public virtual ReservaEstado ReservaEstado { get; set; }
 
         public virtual Servicio Servicio { get; set; }

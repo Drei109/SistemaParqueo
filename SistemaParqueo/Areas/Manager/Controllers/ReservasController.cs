@@ -63,6 +63,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
                 var minutes = reserva.horaSistemaSalida.Value.TotalMinutes - reserva.horaSistemaLLegada.Value.TotalMinutes;
                 reserva.Costo = (decimal) ((minutes *  (double) db.Servicio.Find(reserva.ServicioId).Costo) / 60);
                 reserva.ReservaEstadoId = EstadoReserva.Ocupado;
+                reserva.Fecha = DateTime.Now;
                 db.Reserva.Add(reserva);
                 db.SaveChanges();
                 return RedirectToAction("Index");

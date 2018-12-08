@@ -289,6 +289,10 @@
     <Compile Include="Migrations\201812070547200_FavoritosAddedAgain.Designer.cs">
       <DependentUpon>201812070547200_FavoritosAddedAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812080315394_FechaAddedToReserva.cs" />
+    <Compile Include="Migrations\201812080315394_FechaAddedToReserva.Designer.cs">
+      <DependentUpon>201812080315394_FechaAddedToReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BoletaCabecera.cs" />
@@ -758,6 +762,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812070547200_FavoritosAddedAgain.resx">
       <DependentUpon>201812070547200_FavoritosAddedAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812080315394_FechaAddedToReserva.resx">
+      <DependentUpon>201812080315394_FechaAddedToReserva.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
