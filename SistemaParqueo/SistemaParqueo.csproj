@@ -206,6 +206,7 @@
     <Compile Include="APIControllers\FavoritosController.cs" />
     <Compile Include="APIControllers\ReservasController.cs" />
     <Compile Include="APIControllers\ServiciosController.cs" />
+    <Compile Include="APIControllers\VehiculosController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
