@@ -94,6 +94,10 @@ namespace SistemaParqueo.Controllers
                     {
                         return RedirectToAction("Index", "Home", new { area = "Manager" });
                     }
+                    else if ((UserManager.IsInRole(user.Id, RoleName.Employee)))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Manager" });
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
