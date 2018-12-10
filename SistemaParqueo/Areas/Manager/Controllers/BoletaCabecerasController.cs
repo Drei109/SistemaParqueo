@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using SistemaParqueo.Models;
 
 namespace SistemaParqueo.Areas.Manager.Controllers
@@ -17,6 +18,16 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // GET: Manager/BoletaCabeceras
         public ActionResult Index()
         {
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            if (userId != null)
+            {
+                var user = db.Users.Find(userId);
+                var boletaCabeceraUsuario = db.BoletaCabecera
+                    .Include(b => b.Cliente)
+                    .Include(b => b.Reserva)
+                    .Where(b => b.Reserva.Servicio.Cochera.EmpresaId == user.EmpresaId);
+                return View(boletaCabeceraUsuario.ToList());
+            }
             var boletaCabecera = db.BoletaCabecera.Include(b => b.Cliente).Include(b => b.Reserva);
             return View(boletaCabecera.ToList());
         }

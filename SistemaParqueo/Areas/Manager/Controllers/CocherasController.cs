@@ -7,6 +7,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using SistemaParqueo.Models;
 
 namespace SistemaParqueo.Areas.Manager.Controllers
@@ -18,6 +19,13 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // GET: Manager/Cocheras
         public ActionResult Index()
         {
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            if (userId != null)
+            {
+                var user = db.Users.Find(userId);
+                var cocherasUsu = db.Cochera.Include(c => c.CocheraEstado).Include(c => c.Empresa).Where(m=>m.EmpresaId == user.EmpresaId);
+                return View(cocherasUsu.ToList());
+            }
             var cochera = db.Cochera.Include(c => c.CocheraEstado).Include(c => c.Empresa);
             return View(cochera.ToList());
         }

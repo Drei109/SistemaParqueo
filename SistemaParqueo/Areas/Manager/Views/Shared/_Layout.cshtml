@@ -104,10 +104,10 @@
                                         <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item " aria-haspopup="true">
-                                                <a href="header/actions.html" class="m-menu__link ">
+                                                <a href="@Url.Action("LogOff", "Account", new { area = "" },Request.Url?.Scheme)" class="m-menu__link ">
                                                     <i class="m-menu__link-icon flaticon-file"></i>
                                                     <span class="m-menu__link-text">
-                                                        Crear Reporte
+                                                        Cerrar Sesión
                                                     </span>
                                                 </a>
                                             </li>
@@ -116,8 +116,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- END: Horizontal Menu -->
-                        <!-- BEGIN: Topbar -->
                         <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid">
                             <div class="m-stack__item m-topbar__nav-wrapper">
                                 <ul class="m-topbar__nav m-nav m-nav--inline">
@@ -184,6 +182,8 @@
                                 </ul>
                             </div>
                         </div>
+                        <!-- END: Horizontal Menu -->
+                        <!-- BEGIN: Topbar -->
                         <!-- END: Topbar -->
                     </div>
                 </div>

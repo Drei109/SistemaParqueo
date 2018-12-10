@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using SistemaParqueo.Models;
 
 namespace SistemaParqueo.Areas.Manager.Controllers
@@ -17,6 +18,13 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // GET: Manager/Servicios
         public ActionResult Index()
         {
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            if (userId != null)
+            {
+                var user = db.Users.Find(userId);
+                var serviciosUsuario = db.Servicio.Include(s => s.Cochera).Where(m => m.Cochera.EmpresaId == user.EmpresaId);
+                return View(serviciosUsuario.ToList());
+            }
             var servicio = db.Servicio.Include(s => s.Cochera);
             return View(servicio.ToList());
         }
