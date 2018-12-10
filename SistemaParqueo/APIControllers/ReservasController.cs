@@ -102,7 +102,7 @@ namespace SistemaParqueo.APIControllers
                 Costo = reservaDTO.costo,
                 horaReservaLlegada = reservaDTO.hora_reserva_llegada,
                 horaReservaSalida = reservaDTO.hora_reserva_salida,
-                horaSistemaLLegada = reservaDTO.hora_reserva_llegada,
+                horaSistemaLLegada = reservaDTO.hora_sistema_llegada,
                 horaSistemaSalida = reservaDTO.hora_sistema_salida,
                 ReservaId = reservaDTO.id,
                 ReservaEstadoId = reservaDTO.reserva_estado_id,
