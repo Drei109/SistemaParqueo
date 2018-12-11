@@ -54,8 +54,11 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         // GET: Manager/Reservas/Create
         public ActionResult Create(string clienteDNI)
         {
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
             ViewBag.ReservaEstadoId = new SelectList(db.ReservaEstado, "ReservaEstadoId", "Descripcion");
-            ViewBag.ServicioId = new SelectList(db.Servicio, "ServicioId", "Descripcion");
+            ViewBag.ServicioId = new SelectList(db.Servicio.Where(m => m.Cochera.EmpresaId == user.EmpresaId), "ServicioId", "Descripcion");
             ViewBag.VehiculoId = new SelectList(db.Vehiculo, "VehiculoId", "Placa");
             return View();
         }
