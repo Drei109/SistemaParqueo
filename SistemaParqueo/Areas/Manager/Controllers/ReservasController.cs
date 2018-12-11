@@ -331,7 +331,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
 
             var reserva = db.Reserva.Find(id);
             if (reserva != null) reserva.ReservaEstadoId = EstadoReserva.Ocupado;
-            reserva.horaReservaLlegada = DateTime.Now.TimeOfDay;
+            reserva.horaSistemaLLegada = DateTime.Now.TimeOfDay;
             db.SaveChanges();
 
             return RedirectToAction("Index", "Reservas");

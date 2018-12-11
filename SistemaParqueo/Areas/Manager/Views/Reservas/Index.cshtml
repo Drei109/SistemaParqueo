@@ -107,7 +107,7 @@
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
-                            @if (reservas[i].ReservaEstadoId == EstadoReserva.Enviado)
+                            @if (reservas[i].ReservaEstadoId == EstadoReserva.Ocupado)
                             {
                                 <li class="m-portlet__nav-item">
                                     <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
@@ -115,7 +115,7 @@
                                     </a>
                                 </li>
                             }
-                            else
+                            else if (reservas[i].ReservaEstadoId == EstadoReserva.Enviado)
                             {
                                 <li class="m-portlet__nav-item">
                                     <a href="@Url.Action("OcuparReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
@@ -211,7 +211,7 @@
                                     <i class="la la-remove"></i>
                                 </a>
                             </li>
-                            @if (reservas[i].ReservaEstadoId == EstadoReserva.Enviado)
+                            @if (reservas[i].ReservaEstadoId == EstadoReserva.Ocupado)
                             {
                                 <li class="m-portlet__nav-item">
                                     <a href="@Url.Action("TerminarReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
@@ -219,7 +219,7 @@
                                     </a>
                                 </li>
                             }
-                            else
+                            else if (reservas[i].ReservaEstadoId == EstadoReserva.Enviado)
                             {
                                 <li class="m-portlet__nav-item">
                                     <a href="@Url.Action("OcuparReserva", null, new {area = "Manager", controller = "Reservas", id = @reservas[i].ReservaId}, Request.Url?.Scheme)" class="m-portlet__nav-link m-portlet__nav-link--icon">
