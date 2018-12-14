@@ -59,7 +59,8 @@ namespace SistemaParqueo.Areas.Manager.Controllers
 
             ViewBag.ReservaEstadoId = new SelectList(db.ReservaEstado, "ReservaEstadoId", "Descripcion");
             ViewBag.ServicioId = new SelectList(db.Servicio.Where(m => m.Cochera.EmpresaId == user.EmpresaId), "ServicioId", "Descripcion");
-            ViewBag.VehiculoId = new SelectList(db.Vehiculo, "VehiculoId", "Placa");
+            //ViewBag.VehiculoId = new SelectList(db.Vehiculo, "VehiculoId", "Placa");
+            //ViewBag.VehiculoId = new SelectList(db.Vehiculo.Where(m => m.ClienteId == cliente.ClienteId), "VehiculoId", "Placa");
             return View();
         }
 
@@ -70,8 +71,8 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Reserva reserva)
         {
-            ModelState.Remove("horaSistemaLLegada");
-            ModelState.Remove("horaSistemaSalida");
+            ModelState.Remove("horaReservaLLegada");
+            ModelState.Remove("horaReservaSalida");
             ModelState.Remove("Costo");
             ModelState.Remove("ReservaEstadoId");
 
@@ -88,7 +89,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
 
             ViewBag.ReservaEstadoId = new SelectList(db.ReservaEstado, "ReservaEstadoId", "Descripcion", reserva.ReservaEstadoId);
             ViewBag.ServicioId = new SelectList(db.Servicio, "ServicioId", "Descripcion", reserva.ServicioId);
-            ViewBag.VehiculoId = new SelectList(db.Vehiculo, "VehiculoId", "Placa", reserva.VehiculoId);
+            //ViewBag.VehiculoId = new SelectList(db.Vehiculo, "VehiculoId", "Placa", reserva.VehiculoId);
             return View(reserva);
         }
 
