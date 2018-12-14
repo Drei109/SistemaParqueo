@@ -11,10 +11,11 @@ namespace SistemaParqueo.Areas.Manager.Models
     public class CrearClienteViewModel
     {
         [Required]
-        [StringLength(250)]
+        [StringLength(250, MinimumLength = 7)]
         public string Nombre { get; set; }
+
         [Required]
-        [StringLength(250)]
+        [StringLength(250, MinimumLength = 7)]
         public string Apellido { get; set; }
         [Required]
         [StringLength(8)]

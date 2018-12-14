@@ -12,15 +12,16 @@ namespace SistemaParqueo.Models
         public int PersonaId { get; set; }
 
         [Required]
-        [StringLength(250)]
+        [StringLength(250, MinimumLength = 5)]
         public string Nombre { get; set; }
 
         [Required]
-        [StringLength(250)]
+        [StringLength(250, MinimumLength = 3)]
         public string Apellido { get; set; }
 
         [Required]
-        [StringLength(8)]
+        [StringLength(8, MinimumLength = 8)]
+        [RegularExpression(@"[\d]{8}", ErrorMessage = "DNI no válido")]
         public string DNI { get; set; }
 
         [StringLength(15)]

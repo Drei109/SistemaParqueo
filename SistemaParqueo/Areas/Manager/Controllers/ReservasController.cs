@@ -213,12 +213,7 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         [HttpGet]
         public ActionResult CrearCliente(string DNI)
         {
-            //var crearClienteViewModel = new CrearClienteViewModel()
-            //{
-            //    DNI = DNI
-            //};
             ViewBag.DNI = DNI;
-            //return View(crearClienteViewModel);
             return View();
         }
 
