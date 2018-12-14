@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using SistemaParqueo.Areas.Manager.Models;
 using SistemaParqueo.Models;
@@ -60,7 +61,14 @@ namespace SistemaParqueo.Areas.Manager.Controllers
             ViewBag.ReservaEstadoId = new SelectList(db.ReservaEstado, "ReservaEstadoId", "Descripcion");
             ViewBag.ServicioId = new SelectList(db.Servicio.Where(m => m.Cochera.EmpresaId == user.EmpresaId), "ServicioId", "Descripcion");
             //ViewBag.VehiculoId = new SelectList(db.Vehiculo, "VehiculoId", "Placa");
-            //ViewBag.VehiculoId = new SelectList(db.Vehiculo.Where(m => m.ClienteId == cliente.ClienteId), "VehiculoId", "Placa");
+
+            if (!clienteDNI.IsNullOrWhiteSpace())
+            {
+                var cliente = db.Cliente.First(m => m.DNI == clienteDNI);
+                ViewBag.VehiculoId = new SelectList(db.Vehiculo.Where(m => m.ClienteId == cliente.ClienteId), "VehiculoId",
+                    "Placa");
+            }
+
             return View();
         }
 
@@ -203,13 +211,15 @@ namespace SistemaParqueo.Areas.Manager.Controllers
         }
 
         [HttpGet]
-        public ActionResult CrearCliente(string clienteDNI)
+        public ActionResult CrearCliente(string DNI)
         {
-            var crearClienteViewModel = new CrearClienteViewModel()
-            {
-                DNI = clienteDNI
-            };
-            return View(crearClienteViewModel);
+            //var crearClienteViewModel = new CrearClienteViewModel()
+            //{
+            //    DNI = DNI
+            //};
+            ViewBag.DNI = DNI;
+            //return View(crearClienteViewModel);
+            return View();
         }
 
         [HttpPost]
@@ -243,7 +253,8 @@ namespace SistemaParqueo.Areas.Manager.Controllers
             {
                 db.Vehiculo.Add(vehiculo);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                var clienteDNI = cliente.DNI;
+                return RedirectToAction("Create", new { clienteDNI = clienteDNI });
             }
             
             return View("Create");

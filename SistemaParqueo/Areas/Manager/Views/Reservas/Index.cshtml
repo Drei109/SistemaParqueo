@@ -154,7 +154,7 @@
                     </div>
                     <div class="row">
                         <div class="col-4"><b>Costo</b></div>
-                        <div class="col-8">@reservas[i].Costo</div>
+                        <div class="col-8">S/. @($"{reservas[i].Costo:0.00}")</div>
                     </div>
                 </div>
                 @if (reservas[i].ReservaServicios.Count != 0)
@@ -166,7 +166,7 @@
                         {
                         <div class="row">
                             <div class="col-8">@rs.Servicio.Descripcion</div>
-                            <div class="col-4">@rs.Costo</div>
+                            <div class="col-4">S/. @($"{rs.Costo:0.00}")</div>
                         </div>
                         }
                     </div>   
@@ -258,7 +258,7 @@
                     </div>
                     <div class="row">
                         <div class="col-4"><b>Costo</b></div>
-                        <div class="col-8">@reservas[i].Costo</div>
+                        <div class="col-8">S/. @($"{reservas[i].Costo:0.00}")</div>
                     </div>
                 </div>
                 @if (reservas[i].ReservaServicios.Count != 0)
@@ -270,7 +270,7 @@
                         {
                             <div class="row">
                                 <div class="col-8">@rs.Servicio.Descripcion</div>
-                                <div class="col-4">@rs.Costo</div>
+                                <div class="col-4">S/. @($"{rs.Costo:0.00}")</div>
                             </div>
                         }
                     </div>   
@@ -281,68 +281,3 @@
         }
     </div>
 </div>
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservaEstado.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Servicio.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehiculo.Placa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.horaReservaLlegada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.horaReservaSalida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.horaSistemaLLegada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.horaSistemaSalida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Costo)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservaEstado.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicio.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehiculo.Placa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horaReservaLlegada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horaReservaSalida)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horaSistemaLLegada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horaSistemaSalida)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Costo)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ReservaId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ReservaId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ReservaId })
-            </td>
-        </tr>
-    }
-
-    </table>*@

@@ -7,7 +7,7 @@
 
 <h2>Hacer Reserva</h2>
 <br />
-@using (Html.BeginForm("BuscarCliente", "Reservas", FormMethod.Post, new { @class = "my_form" }))
+@using (Html.BeginForm("BuscarCliente", "Reservas", FormMethod.Post, new { @class = "" }))
 {
     <h4>Cliente</h4>
     <hr />
@@ -26,7 +26,7 @@
     </div>
 }
 
-@using (Html.BeginForm("Create", "Reservas", FormMethod.Post, new { @class = "my_form" }))
+@using (Html.BeginForm("Create", "Reservas", FormMethod.Post, new { @class = "" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.horaReservaLlegada)
@@ -65,7 +65,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.horaSistemaLLegada, "Hora de llegada", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.horaSistemaLLegada, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                <div class="input-group timepicker">
+                    @*<input type="text" class="form-control m-input" id="m_timepicker_2" readonly="" placeholder="Ingrese la hora">*@
+                    @Html.EditorFor(model => model.horaSistemaLLegada, new { htmlAttributes = new { @class = "form-control form-control m-input", @required = "required", @id = "m_timepicker_2", @readonly = "", @placeholder = "Ingrese la hora" } })
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
+                </div>
                 @Html.ValidationMessageFor(model => model.horaSistemaLLegada, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -73,7 +81,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.horaSistemaSalida, "Hora de salida", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.horaSistemaSalida, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @*@Html.EditorFor(model => model.horaSistemaSalida, new { htmlAttributes = new { @class = "form-control", @required = "required" } })*@
+                <div class="input-group timepicker">
+                    @*<input type="text" class="form-control m-input" id="m_timepicker_2" readonly="" placeholder="Ingrese la hora">*@
+                    @Html.EditorFor(model => model.horaSistemaSalida, new { htmlAttributes = new { @class = "form-control form-control m-input", @required = "required", @id = "m_timepicker_2", @readonly = "", @placeholder = "Ingrese la hora" } })
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
+                </div>
                 @Html.ValidationMessageFor(model => model.horaSistemaSalida, "", new { @class = "text-danger" })
             </div>
         </div>
